@@ -6,6 +6,11 @@
     <application
         android:label="cab_rider"
         android:icon="@mipmap/ic_launcher">
+
+        <!-- Google Maps API key -->
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyC8bAiI8yDk5YEQS8VDzMIC-e0E5y446-s"/>
+        
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -40,9 +45,6 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyB-DXDM28-apXG86HbxwKu6Q7ZI7V0BqS4"/>
 
     </application>
 </manifest>

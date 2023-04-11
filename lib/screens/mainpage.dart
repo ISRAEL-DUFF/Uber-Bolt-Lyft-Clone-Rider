@@ -7,6 +7,8 @@ import 'package:cab_rider/globalvariables.dart';
 import 'package:cab_rider/helpers/firehelper.dart';
 import 'package:cab_rider/helpers/helpermethods.dart';
 import 'package:cab_rider/rideVariables.dart';
+import 'package:cab_rider/screens/driverpage.dart';
+import 'package:cab_rider/screens/loginpage.dart';
 import 'package:cab_rider/screens/searchpage.dart';
 import 'package:cab_rider/styles/styles.dart';
 import 'package:cab_rider/widgets/BrandDivider.dart';
@@ -82,6 +84,20 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
         await HelperMethods.findCoordinateAddress(position, context);
 // print(address);
     startGeofireListener();
+
+    var rideKeys = FirebaseDatabase.instance.reference().child('rideKeys');
+
+    rideKeys.onChildAdded.listen((event) {
+      if(event.snapshot.value != null) {
+        setState(() {
+        print("Event value: ${event.snapshot.value}");
+        currentRideKey = event.snapshot.value['requestId'];
+        currentRideFare = event.snapshot.value['fares'] != null ? event.snapshot.value['fares'] : currentRideFare;
+      });
+        
+      }
+     });
+
   }
 
   void showDetailSheet(context) async {
@@ -165,14 +181,14 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            'Tee Gbez',
+                            'UNICAB',
                             style: TextStyle(
                                 fontSize: 20, fontFamily: 'Brand-Bold'),
                           ),
                           SizedBox(
                             height: 5,
                           ),
-                          Text('View Profile'),
+                          Text('Passenger'),
                         ],
                       )
                     ],
@@ -183,41 +199,48 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
               SizedBox(
                 height: 10,
               ),
-              ListTile(
+              GestureDetector(
+                onTap: () => Navigator.of(context).pushNamed(DriverPage.id),
+                child: ListTile(
                 leading: Icon(OMIcons.cardGiftcard),
                 title: Text(
-                  'Free Rides',
+                  'Driver',
                   style: kDrawerItemStyle,
                 ),
-              ),
-              ListTile(
-                leading: Icon(OMIcons.creditCard),
-                title: Text(
-                  'Payments',
-                  style: kDrawerItemStyle,
-                ),
-              ),
-              ListTile(
-                leading: Icon(OMIcons.history),
-                title: Text(
-                  'Ride History',
-                  style: kDrawerItemStyle,
-                ),
-              ),
-              ListTile(
-                leading: Icon(OMIcons.contactSupport),
-                title: Text(
-                  'Support',
-                  style: kDrawerItemStyle,
-                ),
-              ),
-              ListTile(
+              ),),
+              // ListTile(
+              //   leading: Icon(OMIcons.creditCard),
+              //   title: Text(
+              //     'Payments',
+              //     style: kDrawerItemStyle,
+              //   ),
+              // ),
+              // ListTile(
+              //   leading: Icon(OMIcons.history),
+              //   title: Text(
+              //     'Ride History',
+              //     style: kDrawerItemStyle,
+              //   ),
+              // ),
+              // ListTile(
+              //   leading: Icon(OMIcons.contactSupport),
+              //   title: Text(
+              //     'Support',
+              //     style: kDrawerItemStyle,
+              //   ),
+              // ),
+              GestureDetector(
+                onTap: () {
+                    Navigator.pushNamedAndRemoveUntil(
+                      context, LoginPage.id, (route) => false);
+                  },
+                child: ListTile(
                 leading: Icon(OMIcons.info),
                 title: Text(
-                  'About',
+                  'Logout',
                   style: kDrawerItemStyle,
                 ),
-              ),
+              ),),
             ],
           ),
         ),
@@ -377,34 +400,32 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                         SizedBox(height: 22),
                         Row(
                           children: <Widget>[
-                            Icon(
-                              OMIcons.home,
-                              color: BrandColors.colorDimText,
-                            ),
-                            SizedBox(
-                              width: 12,
-                            ),
+                            // Icon(
+                            //   OMIcons.home,
+                            //   color: BrandColors.colorDimText,
+                            // ),
+                            // SizedBox(
+                            //   width: 12,
+                            // ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text(
-                                    // (Provider.of<AppData>(context)
-                                    //             .pickupAddress !=
-                                    //         null)
-                                    //     ? Provider.of<AppData>(context)
-                                    //         .pickupAddress
-                                    //         .placeName
-                                    //     :
-                                    'Add Home'
-                                    //  Provider.of<AppData>(context).pickupAddress.placeName
-                                    ),
-                                SizedBox(
-                                  height: 3,
-                                ),
-                                Text('Your residential address',
-                                    style: TextStyle(
-                                        fontSize: 11,
-                                        color: BrandColors.colorDimText)),
+                                // GestureDetector(
+                                //   onTap: () {
+                                //     setState(() {
+                                //       setupPositionLocator();
+                                //     });
+                                //   },
+                                //   child: Text(
+                                //     'Add Home'
+                                //     ),),
+                                // SizedBox(
+                                //   height: 3,
+                                // ),
+                                // Text('Your residential address',
+                                //     style: TextStyle(
+                                //         fontSize: 11,
+                                //         color: BrandColors.colorDimText)),
                               ],
                             )
                           ],
@@ -418,24 +439,24 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                         ),
                         Row(
                           children: <Widget>[
-                            Icon(
-                              OMIcons.workOutline,
-                              color: BrandColors.colorDimText,
-                            ),
-                            SizedBox(
-                              width: 12,
-                            ),
+                            // Icon(
+                            //   OMIcons.workOutline,
+                            //   color: BrandColors.colorDimText,
+                            // ),
+                            // SizedBox(
+                            //   width: 12,
+                            // ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text('Add work'),
-                                SizedBox(
-                                  height: 3,
-                                ),
-                                Text('Your office address',
-                                    style: TextStyle(
-                                        fontSize: 11,
-                                        color: BrandColors.colorDimText)),
+                                // Text('Add work'),
+                                // SizedBox(
+                                //   height: 3,
+                                // ),
+                                // Text('Your office address',
+                                //     style: TextStyle(
+                                //         fontSize: 11,
+                                //         color: BrandColors.colorDimText)),
                               ],
                             )
                           ],
@@ -511,7 +532,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                               ),
                               Text(
                                   (tripDirectionDetails != null)
-                                      ? '\$${HelperMethods.estimateFares(tripDirectionDetails)}'
+                                      ? '\$${getEstimateFares(tripDirectionDetails)}'
                                       : '',
                                   style: TextStyle(
                                       fontSize: 18, fontFamily: 'Brand-Bold')),
@@ -739,45 +760,46 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Container(
-                                height: 50,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular((25))),
-                                  border: Border.all(
-                                      width: 1.0,
-                                      color: BrandColors.colorTextLight),
-                                ),
-                                child: Icon(Icons.call),
-                              ),
-                              SizedBox(height: 10),
-                              Text('Call'),
+                              // Container(
+                              //   height: 50,
+                              //   width: 50,
+                              //   decoration: BoxDecoration(
+                              //     borderRadius:
+                              //         BorderRadius.all(Radius.circular((25))),
+                              //     border: Border.all(
+                              //         width: 1.0,
+                              //         color: BrandColors.colorTextLight),
+                              //   ),
+                              //   child: Icon(Icons.call),
+                              // ),
+                              // SizedBox(height: 10),
+                              // Text('Call'),
                             ],
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Container(
-                                height: 50,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular((25))),
-                                  border: Border.all(
-                                      width: 1.0,
-                                      color: BrandColors.colorTextLight),
-                                ),
-                                child: Icon(Icons.list),
-                              ),
-                              SizedBox(height: 10),
-                              Text('Details'),
+                              // Container(
+                              //   height: 50,
+                              //   width: 50,
+                              //   decoration: BoxDecoration(
+                              //     borderRadius:
+                              //         BorderRadius.all(Radius.circular((25))),
+                              //     border: Border.all(
+                              //         width: 1.0,
+                              //         color: BrandColors.colorTextLight),
+                              //   ),
+                              //   child: Icon(Icons.list),
+                              // ),
+                              // SizedBox(height: 10),
+                              // Text('Details'),
                             ],
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Container(
+                              GestureDetector(
+                                child: Container(
                                 height: 50,
                                 width: 50,
                                 decoration: BoxDecoration(
@@ -789,6 +811,10 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                                 ),
                                 child: Icon(OMIcons.clear),
                               ),
+                                onTap: () {
+                                cancelRequest();
+                                resetApp();
+                              },),
                               SizedBox(height: 10),
                               Text('Cancel'),
                             ],
@@ -917,7 +943,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
     Geofire.queryAtLocation(
             currentPosition.latitude, currentPosition.longitude, 20)
         .listen((map) {
-      print(map);
+      print(" searching for drivers... $map, lat: ${currentPosition.latitude}, long: ${currentPosition.longitude}");
 
       if (map != null) {
         var callBack = map['callBack'];
@@ -988,6 +1014,13 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
 
   void createRideRequest() {
     rideRef = FirebaseDatabase.instance.reference().child('rideRequest').push();
+    // currentRideKey = rideRef.key;
+
+    var rideKeys = FirebaseDatabase.instance.reference().child('rideKeys').push();
+    rideKeys.set({
+      "requestId": rideRef.key,
+      "fares": currentRideFare
+    }).then((value) => print("done"),);
 
     // rideRef;
     var pickup = Provider.of<AppData>(context, listen: false).pickupAddress;
@@ -1016,10 +1049,12 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
       'driver_id': 'waiting',
     };
 
-    rideRef.set(rideMap);
+    rideRef.set(rideMap).then((v) => print("Written to db>>>>>>>>>>>>>>>>>>>>>"));
 
     rideSubscription = rideRef.onValue.listen((event) async {
       //check for null snapshot
+
+      print("EVENT>>>>>>>> ${event.snapshot.value}");
 
       if (event.snapshot.value == null) {
         return;
@@ -1077,6 +1112,8 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
       if (status == 'ended') {
         if (event.snapshot.value['fares'] != null) {
           int fares = int.parse(event.snapshot.value['fares'].toString());
+
+          print("ENDING TRIP");
 
           var response = await showDialog(
             context: context,
@@ -1177,6 +1214,10 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
       driverPhoneNumber = '';
       driverCarDetails = '';
       tripStatusDisplay = 'Driver is Arriving';
+
+      FireHelper.nearbyDriverList = [
+        NearbyDriver(key: "Driver-" + HelperMethods.generateRandomNumber(60).toString(), latitude: 4.943320, longitude: 8.327480)
+      ];
     });
     setupPositionLocator();
   }
@@ -1257,5 +1298,17 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
         }
       });
     });
+  }
+
+  int getEstimateFares(DirectionDetails details) {
+    var fares = HelperMethods.estimateFares(tripDirectionDetails);
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      setState(() {
+        currentRideFare = fares.toDouble();
+      });
+     });
+
+    return fares;
   }
 }

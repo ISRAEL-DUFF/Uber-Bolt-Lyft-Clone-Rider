@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:cab_rider/dataproviders/appdata.dart';
 import 'package:cab_rider/globalvariables.dart';
+import 'package:cab_rider/screens/driverpage.dart';
 import 'package:cab_rider/screens/loginpage.dart';
 import 'package:cab_rider/screens/mainpage.dart';
 import 'package:cab_rider/screens/registrationpage.dart';
@@ -15,23 +16,23 @@ import 'package:provider/provider.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final FirebaseApp app = await Firebase.initializeApp(
-    name: 'db2',
+    name: 'bolt-clone',
     options: Platform.isIOS
         ? const FirebaseOptions(
-            appId: '1:784303276461:ios:e074496838992edfd82124',
-            apiKey: 'AIzaSyCM-RJyPvjmEFEi5RInptmaFCfgjDIELCA',
-            projectId: 'flutter-firebase-plugins',
-            messagingSenderId: '784303276461',
+            appId: '1:553304875493:android:d8b16e00f6aa678fe40f0c',
+            apiKey: 'AIzaSyCq4vD2a0XjllUequk0tRiQ44hSmdeUrss',
+            projectId: 'bolt-clone-45f14',
+            messagingSenderId: '553304875493',
             databaseURL:
                 'https://geetaxi-24ea3-default-rtdb.europe-west1.firebasedatabase.app',
           )
-        : const FirebaseOptions(
-            appId: '1:784303276461:android:0666fe7d2a396070d82124',
-            apiKey: 'AIzaSyB-DXDM28-apXG86HbxwKu6Q7ZI7V0BqS4',
-            messagingSenderId: '297855924061',
-            projectId: 'flutter-firebase-plugins',
+        : const FirebaseOptions( 
+            appId: '1:149931963815:android:b9abb8ed8a352f8178f282',
+            apiKey: 'AIzaSyBR5gvRUQFjI-CUHfQFSjGQTwtbJzE_92Q',
+            projectId: 'bolt-clone-55d4a',
+            messagingSenderId: '149931963815',
             databaseURL:
-                'https://geetaxi-24ea3-default-rtdb.europe-west1.firebasedatabase.app',
+                'https://bolt-clone-55d4a-default-rtdb.firebaseio.com/',
           ),
   );
 
@@ -55,7 +56,8 @@ class MyApp extends StatelessWidget {
         routes: {
           RegistrationPage.id: (context) => RegistrationPage(),
           LoginPage.id: (context) => LoginPage(),
-          MainPage.id: (context) => MainPage()
+          MainPage.id: (context) => MainPage(),
+          DriverPage.id: (context) => DriverPage()
         },
       ),
     );

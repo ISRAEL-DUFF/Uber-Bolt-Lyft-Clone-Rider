@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "784303276461",
-    "firebase_url": "https://geetaxi-24ea3-default-rtdb.europe-west1.firebasedatabase.app",
-    "project_id": "geetaxi-24ea3",
-    "storage_bucket": "geetaxi-24ea3.appspot.com"
+    "project_number": "149931963815",
+    "project_id": "bolt-clone-55d4a",
+    "firebase_url": "https://bolt-clone-55d4a-default-rtdb.firebaseio.com/",
+    "storage_bucket": "bolt-clone-55d4a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:784303276461:android:0666fe7d2a396070d82124",
+        "mobilesdk_app_id": "1:149931963815:android:b9abb8ed8a352f8178f282",
         "android_client_info": {
           "package_name": "com.example.cab_rider"
         }
       },
       "oauth_client": [
         {
-          "client_id": "784303276461-q77f9m85rju0s2v32prlv8k38a2omvt6.apps.googleusercontent.com",
+          "client_id": "149931963815-tcgl48q691b1gncpfgm09o942t4hh5gc.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB-DXDM28-apXG86HbxwKu6Q7ZI7V0BqS4"
+          "current_key": "AIzaSyBR5gvRUQFjI-CUHfQFSjGQTwtbJzE_92Q"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "784303276461-q77f9m85rju0s2v32prlv8k38a2omvt6.apps.googleusercontent.com",
+              "client_id": "149931963815-tcgl48q691b1gncpfgm09o942t4hh5gc.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

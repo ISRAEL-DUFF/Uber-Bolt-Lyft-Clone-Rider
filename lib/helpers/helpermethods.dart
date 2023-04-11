@@ -78,7 +78,22 @@ class HelperMethods {
 
       return null;
     }
+
+    print("Directions $response");
     DirectionDetails directionDetails = DirectionDetails();
+
+
+    if(response['status'] == 'ZERO_RESULTS') {
+      directionDetails.durationText = generateRandomNumber(50).toString() + "min";
+          directionDetails.durationValue = generateRandomNumber(50).toInt();
+
+          directionDetails.distanceText = "Meters";
+          directionDetails.distanceValue = generateRandomNumber(50).toInt();
+          directionDetails.encodedPoints = "Points";
+
+      return directionDetails;
+    }
+
     directionDetails.durationText =
         response['routes'][0]['legs'][0]['duration']['text'];
     directionDetails.durationValue =

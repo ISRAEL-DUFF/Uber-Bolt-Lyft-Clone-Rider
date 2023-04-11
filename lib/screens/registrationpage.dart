@@ -97,15 +97,23 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   alignment: Alignment.center,
                   height: 100,
                   width: 100,
-                  image: AssetImage('images/logo.png'),
+                  image: AssetImage('images/taxi.png'),
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 10,
+                ),
+                Text(
+                  'UNICAB',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 25, fontFamily: 'Brand-Bold'),
+                ),
+                SizedBox(
+                  height: 15,
                 ),
                 Text(
                   'Create a Rider\'s account',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 25, fontFamily: 'Brand-Bold'),
+                  style: TextStyle(fontSize: 15, fontFamily: 'Brand-Bold'),
                 ),
                 Padding(
                   padding: EdgeInsets.all(20.0),

@@ -43,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
 
   var passwordController = TextEditingController();
 
-  void login() async {
+  void login(String email, String password) async {
     //show dialog
     showDialog(
       context: context,
@@ -53,9 +53,10 @@ class _LoginPageState extends State<LoginPage> {
     );
     final UserCredential result = await FirebaseAuth.instance
         .signInWithEmailAndPassword(
-            email: "seank@yahoo.com", password: "aaaaaaaaaa")
+            email: email, password: password)
         .catchError((ex) {
       Navigator.pop(context);
+      print('$ex');
       PlatformException thisEx = ex;
       showSnackBar(thisEx.message);
     });
@@ -110,16 +111,23 @@ class _LoginPageState extends State<LoginPage> {
                   alignment: Alignment.center,
                   height: 100,
                   width: 100,
-                  image: AssetImage('images/logo.png'),
+                  image: AssetImage('images/taxi.png'),
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 10,
                 ),
                 Text(
-                  'Sign in as a Rider',
+                  'UNICAB',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 25, fontFamily: 'Brand-Bold'),
                 ),
+
+                Text(
+                  'Sign in as a Rider',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 15, fontFamily: 'Brand-Bold'),
+                ),
+                
                 Padding(
                   padding: EdgeInsets.all(20.0),
                   child: Column(
@@ -180,7 +188,7 @@ class _LoginPageState extends State<LoginPage> {
                           //       'Please enter a valid password of 8 cahr');
                           //   return;
                           // }
-                          login();
+                          login(emailController.text, passwordController.text);
                         },
                       ),
                     ],

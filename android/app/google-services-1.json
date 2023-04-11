@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "553304875493",
+    "project_id": "bolt-clone-45f14",
+    "storage_bucket": "bolt-clone-45f14.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:553304875493:android:d8b16e00f6aa678fe40f0c",
+        "android_client_info": {
+          "package_name": "com.example.cab_rider"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "553304875493-d3uhn251u8o8mbo2i3pbdfle4menkf77.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCq4vD2a0XjllUequk0tRiQ44hSmdeUrss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "553304875493-d3uhn251u8o8mbo2i3pbdfle4menkf77.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,7 +1,11 @@
 import 'package:cab_rider/datamodels/nearbydriver.dart';
 
+import 'helpermethods.dart';
+
 class FireHelper {
-  static List<NearbyDriver> nearbyDriverList = [];
+  static List<NearbyDriver> nearbyDriverList = [
+    NearbyDriver(key: "Driver-" + HelperMethods.generateRandomNumber(60).toString())
+  ];
   static void removeFromList(String key) {
     int index = nearbyDriverList.indexWhere((element) => element.key == key);
     nearbyDriverList.removeAt(index);
